@@ -1,6 +1,8 @@
 package company;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -88,9 +90,9 @@ public class Employee {
 	public Employee addNewEmp(){
 		
 		Scanner sc = new Scanner (System.in);
-		System.out.println("Employee ID : ");
+		System.out.println("Employee ID(Enter EM first) : ");
 		String emID = sc.nextLine();
-		System.out.println("The title :  ");
+		System.out.println("The title(Mr,Mrs or Ms :  ");
 		String title = sc.nextLine();
 		System.out.println("Full Name :  ");
 		String fullName = sc.nextLine();
@@ -98,7 +100,7 @@ public class Employee {
 		String workDM = sc.nextLine();
 		System.out.println("Position  :  ");
 		String position = sc.nextLine();
-		System.out.println(" Month Salary : ");
+		System.out.println("Month Salary : ");
 		double monthSalary = sc.nextDouble();
 		sc.close();
 		Employee employee = new Employee(emID, title, fullName, workDM,
@@ -106,10 +108,11 @@ public class Employee {
 		
 		System.out.println(employee);
 		
-		
+		String append = null;
 		try {
-			final SimpleDateFormat SPF = new SimpleDateFormat("yyyy-MM-dd");
-			PrintWriter pw = new PrintWriter("C:/Users/KHONG TUAN ANH/workspace/ReworkBasicTest/employee.dat");
+			final SimpleDateFormat SPF = new SimpleDateFormat("yyyy-MM-dd : hh-mm-ss");
+			PrintWriter pw = new PrintWriter(new FileOutputStream(new File("C:/Users/KHONG TUAN ANH/workspace/ReworkBasicTest/Employee.dat"),true));
+			
 			pw.println(employee);
 			pw.println(SPF.format(new Date()));
 			pw.flush();

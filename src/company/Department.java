@@ -1,9 +1,6 @@
 package company;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Department {
@@ -41,8 +38,7 @@ public class Department {
 	
 
 	public String toString() {
-		return "Department [id=" + deID + ", name=" + name + ", domain=" + domain
-				+ "]";
+		return   deID +","+ name +","+ domain;
 	}
 	public Department(){
 		
@@ -55,37 +51,23 @@ public class Department {
 		
 	}
 	
-	public Department createDepartment(){
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("ADD new departmentID :  ");
+	public Department createDepartment(Scanner sc){
+		System.out.print("ADD new departmentID :  ");
 		String id  =  sc.nextLine();
-		System.out.println("Department name : ");
+		System.out.print("Department name : ");
 		String name = sc.nextLine();
-		System.out.println(" What Is Domain : ");
+		System.out.print(" What Is Domain : ");
 		String domain = sc.nextLine();
-		sc.close();
-
-		Department department = new Department(id , name, domain);
-		System.out.println(department);
-		try {
-			final SimpleDateFormat SPF = new SimpleDateFormat("yyyy-MM-dd : hh-mm-ss");
-			PrintWriter pw = new PrintWriter("C:/Users/KHONG TUAN ANH/workspace/ReworkBasicTest/Department.dat");
-			pw.println(department);
-			pw.println(SPF.format(new Date()));
-			pw.flush();
-			pw.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		Department department = new Department(id ,name,domain);
 		return department;
 	}
 	
-	public Department searchDepartment(){
-		
-		return createDepartment();
-		
+	public Department search(String departmentName, List<Department> list) {
+		for (int i = 0; i < list.size(); i++) {
+			if (departmentName.equals(list.get(i).getName())) {
+				return list.get(i);
+			}
+		}
+		return null;
 	}
-	
-
 }

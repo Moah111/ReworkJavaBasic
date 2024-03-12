@@ -1,39 +1,44 @@
 package main;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
-
 import company.Department;
-import company.Employee;
+import file.FileIO;
 
 public class RunProgram {
-	
 	public static void main(String[] args) {
-		PrintFile pf = new PrintFile();
+
+		List<Department> list = FileIO.read();
 		Department de = new Department();
-		Employee emp = new Employee();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("List menu");
 		System.out.println("1:  ADD new Department ");
-		System.out.println("2:  ADD new Employee ");
-		System.out.println("Enter Selection :  ");
-		int menu = sc.nextInt();
+		System.out.println("2:  Search Department(with name)");
+		System.out.println("3:  ADD new Employee ");
+		System.out.println("4:  Quit");
 		Department department = null;
-		Employee employee = null;
-		switch(menu){
-			case 1: 
-			department = de.createDepartment();break;
-			case 2: 
-			employee = emp.addNewEmp();break;
+		while (true) {
+			System.out.println("Enter Selection :  ");
+			String menu = sc.nextLine();
+			switch (menu) {
+			case "1":
+				department = de.createDepartment(sc);
+				list.add(department);
+				break;
+			case "2":
+				System.out.println("Input department to search: ");
+				String searchName = sc.nextLine();
+				System.out.println(de.search(searchName, list));
+				break;
+			case "3":
+				break;
+			case "4":
+			default:
+				FileIO.write(list);
+				return;
+			}
 		}
-	
-		sc.close();
-		
-		
+
 	}
-	
+
 }
