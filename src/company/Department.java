@@ -62,10 +62,10 @@ public class Department {
 		return department;
 	}
 	
-	public Department search(String departmentName, List<Department> list) {
-		for (int i = 0; i < list.size(); i++) {
-			if (departmentName.equals(list.get(i).getName())) {
-				return list.get(i);
+	public Department search(String departmentName, List<Department> deList) {
+		for (int i = 0; i < deList.size(); i++) {
+			if (departmentName.equals(deList.get(i).getName())) {
+				return deList.get(i);
 			}
 		}
 		return null;

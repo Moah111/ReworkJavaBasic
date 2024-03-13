@@ -1,11 +1,8 @@
 package company;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Employee {
@@ -13,118 +10,131 @@ public class Employee {
 	private String emID;
 	private String title;
 	private String fullName;
-	private String workDM;
+	private String domainName;
 	private String position;
-	private double monthSalary; 
+	private String monthSalary;
 	private String deID;
-	
+
 	public String getEmID() {
 		return emID;
 	}
+
 	public void setEmID(String emID) {
 		this.emID = emID;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getFullName() {
 		return fullName;
 	}
+
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	
+
 	public String getWorkDM() {
-		return workDM;
+		return domainName;
 	}
+
 	public void setWorkDM(String workDM) {
-		this.workDM = workDM;
+		this.domainName = workDM;
 	}
-	
+
 	public String getPosition() {
 		return position;
 	}
+
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	
-	public double getMonthSalary() {
+
+	public String getMonthSalary() {
 		return monthSalary;
 	}
-	public void setMonthSalary(double monthSalary) {
+
+	public void setMonthSalary(String monthSalary) {
 		this.monthSalary = monthSalary;
 	}
-	
+
 	public String getDeID() {
 		return department.getId();
 	}
+
 	public void setDeID(String deID) {
 		this.deID = deID;
 	}
-	
+
 	public String toString() {
-		return "Employee [emID=" + emID + ", title=" + title + ", fullName="
-				+ fullName + ", workDM=" + workDM + ", position=" + position
-				+ ", monthSalary=" + monthSalary + ", deID=" + deID + "]";
+		return emID + ":" + title + ":" + fullName + ":" + domainName + ":"
+				+ position + ":" + monthSalary + ":" + deID;
 	}
-	public Employee(){
-		
+
+	public Employee() {
+
 	}
-	
-	public Employee(String emID,String title,String fullName,String workDM,
-			String position,double monthSalary,String deID){
+
+	public Employee(String emID, String title, String fullName, String workDM,
+			String position, String monthSalary, String deID) {
 		this.emID = emID;
 		this.fullName = fullName;
 		this.title = title;
 		this.position = position;
-		this.workDM = workDM;
+		this.domainName = workDM;
 		this.deID = deID;
 		this.monthSalary = monthSalary;
 	}
-	
-	public Employee addNewEmp(){
-		
-		Scanner sc = new Scanner (System.in);
-		System.out.println("Employee ID(Enter EM first) : ");
+
+	public Employee addNewEmp(Scanner sc) {
+
+		System.out.print("Employee ID(Enter EM first) : ");
 		String emID = sc.nextLine();
-		System.out.println("The title(Mr,Mrs or Ms :  ");
+		System.out.print("The title(Mr,Mrs or Ms) :  ");
 		String title = sc.nextLine();
-		System.out.println("Full Name :  ");
+		System.out.print("Full Name :  ");
 		String fullName = sc.nextLine();
-		System.out.println("Work Domain : ");
-		String workDM = sc.nextLine();
-		System.out.println("Position  :  ");
+		System.out.print("Work Domain : ");
+		String domainName = sc.nextLine();
+		System.out.print("Position  :  ");
 		String position = sc.nextLine();
-		System.out.println("Month Salary : ");
-		double monthSalary = sc.nextDouble();
-		sc.close();
-		Employee employee = new Employee(emID, title, fullName, workDM,
-				position,monthSalary,deID);
-		
-		System.out.println(employee);
-		
-		String append = null;
-		try {
-			final SimpleDateFormat SPF = new SimpleDateFormat("yyyy-MM-dd : hh-mm-ss");
-			PrintWriter pw = new PrintWriter(new FileOutputStream(new File("C:/Users/KHONG TUAN ANH/workspace/ReworkBasicTest/Employee.dat"),true));
-			
-			pw.println(employee);
-			pw.println(SPF.format(new Date()));
-			pw.flush();
-			pw.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	
+		System.out.print("Month Salary : ");
+		String monthSalary = sc.nextLine();
+		System.out.print("Deparment ID(Enter DM First) : ");
+		String deID = sc.nextLine();
+
+		Employee employee = new Employee(emID, title, fullName, domainName,
+				position, monthSalary, deID);
 		return employee;
-		
 	}
 	
-	
-	
+	public Employee searchEmp(String employeeName, List<Employee> emList){
+		for (int i = 0; i < emList.size(); i++) {
+			if(employeeName.equals(emList.get(i).getFullName())){
+				return emList.get(i);
+			}
+			
+		}
+		return null;
+		
+	}
+
+	public List<Employee> addToDepartment(String employeeDomain,
+			List<Employee> domainList) {
+		
+
+		List<Employee> departmentList = new ArrayList<>();
+		for (int i = 0; i < domainList.size(); i++) {
+			if (employeeDomain.equals(domainList.get(i).domainName)) {
+				departmentList.add(domainList.get(i));
+			}
+
+		}
+		return departmentList;
+	}
 }
