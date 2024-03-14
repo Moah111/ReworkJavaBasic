@@ -1,9 +1,10 @@
 package company;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import main.Check;
 
 public class Employee {
 	Department department = new Department();
@@ -64,7 +65,7 @@ public class Employee {
 	}
 
 	public String getDeID() {
-		return department.getId();
+		return department.getdeId();
 	}
 
 	public void setDeID(String deID) {
@@ -92,9 +93,13 @@ public class Employee {
 	}
 
 	public Employee addNewEmp(Scanner sc) {
-
+		Check checkEID = new Check();
 		System.out.print("Employee ID(Enter EM first) : ");
 		String emID = sc.nextLine();
+		while (!checkEID.checkID(emID, "EM")) {
+			System.out.print("Employee ID is not correct, try again :  ");
+			deID = sc.nextLine();
+		}
 		System.out.print("The title(Mr,Mrs or Ms) :  ");
 		String title = sc.nextLine();
 		System.out.print("Full Name :  ");
@@ -112,21 +117,20 @@ public class Employee {
 				position, monthSalary, deID);
 		return employee;
 	}
-	
-	public Employee searchEmp(String employeeName, List<Employee> emList){
+
+	public Employee searchEmp(String employeeName, List<Employee> emList) {
 		for (int i = 0; i < emList.size(); i++) {
-			if(employeeName.equals(emList.get(i).getFullName())){
+			if (employeeName.equals(emList.get(i).getFullName())) {
 				return emList.get(i);
 			}
-			
+
 		}
 		return null;
-		
+
 	}
 
 	public List<Employee> addToDepartment(String employeeDomain,
 			List<Employee> domainList) {
-		
 
 		List<Employee> departmentList = new ArrayList<>();
 		for (int i = 0; i < domainList.size(); i++) {

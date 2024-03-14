@@ -15,15 +15,15 @@ public class RunProgram {
 		Department de = new Department();
 		Employee em = new Employee();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("List menu");
-		System.out.println("1:	ADD new Department ");
-		System.out.println("2:	Search Department(with name)");
-		System.out.println("3:	ADD new Employee ");
-		System.out.println("4:	ADD employee to department");
-		System.out.println("5:	Search Employee");
 		Department department = null;
 		Employee employee = null;
 		while (true) {
+			System.out.println("List menu");
+			System.out.println("1:	ADD new Department ");
+			System.out.println("2:	Search Department");
+			System.out.println("3:	ADD new Employee ");
+			System.out.println("4:	ADD employee to department");
+			System.out.println("5:	Search Employee ");
 			System.out.println("Enter Selection :  ");
 			String menu = sc.nextLine();
 			switch (menu) {
@@ -48,7 +48,7 @@ public class RunProgram {
 			case "5":
 				System.out.println("Enter Name Of Employee : ");
 				String searchEmp = sc.nextLine();
-				System.out.println(em.searchEmp(searchEmp, emList) );
+				System.out.println(em.searchEmp(searchEmp, emList));
 				break;
 			default:
 				FileIO.writeDE(deList);

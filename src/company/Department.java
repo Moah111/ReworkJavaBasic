@@ -3,65 +3,69 @@ package company;
 import java.util.List;
 import java.util.Scanner;
 
+import main.Check;
+
+
 public class Department {
 	private String deID;
 	private String name;
 	private String domain;
-	
-	
-	
-	public String getId() {
+
+	public String getdeId() {
 		return deID;
 	}
-	public void setId(String id) {
-		this.deID = id;
+
+	public void setdeId(String deId) {
+		this.deID = deId;
 	}
-
-
 
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-
 	public String getDomain() {
 		return domain;
 	}
+
 	public void setDomain(String domain) {
 		this.domain = domain;
 	}
-	
-	
 
 	public String toString() {
-		return   deID +","+ name +","+ domain;
+		return deID + "," + name + "," + domain;
 	}
-	public Department(){
-		
+
+	public Department() {
+
 	}
-	
-	public Department(String id, String name, String domain){
-		this.deID = id;
+
+	public Department(String deID, String name, String domain) {
+		this.deID = deID;
 		this.name = name;
 		this.domain = domain;
-		
+
 	}
-	
-	public Department createDepartment(Scanner sc){
-		System.out.print("ADD new departmentID :  ");
-		String id  =  sc.nextLine();
+
+	public Department createDepartment(Scanner sc) {
+		Check checkIDFormat = new Check();
+		System.out.print("ADD new departmentID, Start With DE first, follow by 5 digits :  ");
+		String deID = sc.nextLine();
+		while (!checkIDFormat.checkID(deID, "DE")) {
+			System.out.print("Department ID is not correct, try again :  ");
+			deID = sc.nextLine();
+		}
 		System.out.print("Department name : ");
 		String name = sc.nextLine();
 		System.out.print(" What Is Domain : ");
 		String domain = sc.nextLine();
-		Department department = new Department(id ,name,domain);
+		Department department = new Department(deID, name, domain);
 		return department;
 	}
-	
+
 	public Department search(String departmentName, List<Department> deList) {
 		for (int i = 0; i < deList.size(); i++) {
 			if (departmentName.equals(deList.get(i).getName())) {
@@ -70,4 +74,5 @@ public class Department {
 		}
 		return null;
 	}
+
 }

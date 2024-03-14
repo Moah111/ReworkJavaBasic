@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import main.RunProgram;
 import company.Department;
 import company.Employee;
 
@@ -33,7 +32,7 @@ public class FileIO {
 		}
 		return deResult;
 	}
-	
+
 	public static void writeDE(List<Department> list) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileOutputStream(new File(
@@ -48,7 +47,7 @@ public class FileIO {
 		}
 
 	}
-	
+
 	public static List<Employee> ReadEM() {
 		List<Employee> emResult = new ArrayList<>();
 		File em = new File("Employee.dat");
@@ -62,16 +61,16 @@ public class FileIO {
 			}
 			sc.close();
 		} catch (Exception e) {
-		
+
 		}
 
 		return emResult;
 	}
-	
+
 	public static void writeEM(List<Employee> list) {
 		try {
-			PrintWriter pw = new PrintWriter(new FileOutputStream(new File("Employee.dat")
-			,false));
+			PrintWriter pw = new PrintWriter(new FileOutputStream(new File(
+					"Employee.dat"), false));
 			for (int i = 0; i < list.size(); i++) {
 				pw.println(list.get(i));
 			}
@@ -81,5 +80,5 @@ public class FileIO {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
