@@ -93,10 +93,9 @@ public class Employee {
 	}
 
 	public Employee addNewEmp(Scanner sc) {
-		Check checkEID = new Check();
 		System.out.print("Employee ID(Enter EM first) : ");
 		String emID = sc.nextLine();
-		while (!checkEID.checkID(emID, "EM")) {
+		while (Check.isInCorrectFormat(emID, "EM")) {
 			System.out.print("Employee ID is not correct, try again :  ");
 			deID = sc.nextLine();
 		}

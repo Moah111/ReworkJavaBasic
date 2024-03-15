@@ -1,16 +1,20 @@
 package main;
 
 public class Check {
-	public boolean checkID(String value, String format) {
-
-		char[] arr1 = format.toCharArray();
-		char[] idArr = value.toCharArray();
-		if (arr1[0] == idArr[0] && arr1[1] == idArr[1]) {
-			if(idArr.length==7){
+	public static boolean isInCorrectFormat(String value, String format) {
+		if (value.length() != 7) {
 			return true;
-			}
 		}
-		return false;
+		String text = value.substring(0, 2);
+		String number = value.substring(2);
+		try {
+			if (format.equals(text) && Integer.parseInt(number) > 0) {
+				return false;
+			}
+		} catch (Exception ex) {
+			System.out.println("ID not correct format: ");
+		}
+		return true;
 	}
 
 

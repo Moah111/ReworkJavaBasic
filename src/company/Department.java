@@ -51,10 +51,9 @@ public class Department {
 	}
 
 	public Department createDepartment(Scanner sc) {
-		Check checkIDFormat = new Check();
 		System.out.print("ADD new departmentID, Start With DE first, follow by 5 digits :  ");
 		String deID = sc.nextLine();
-		while (!checkIDFormat.checkID(deID, "DE")) {
+		while (Check.isInCorrectFormat(deID, "DE")) {
 			System.out.print("Department ID is not correct, try again :  ");
 			deID = sc.nextLine();
 		}
@@ -62,8 +61,7 @@ public class Department {
 		String name = sc.nextLine();
 		System.out.print(" What Is Domain : ");
 		String domain = sc.nextLine();
-		Department department = new Department(deID, name, domain);
-		return department;
+		return new Department(deID, name, domain);
 	}
 
 	public Department search(String departmentName, List<Department> deList) {
