@@ -5,19 +5,22 @@ import java.util.Scanner;
 
 import company.Department;
 import company.Employee;
+import file.EmployeeAction;
 import file.FileIO;
 
 public class RunProgram {
+	public static List<Employee> domainList = FileIO.ReadEM();
+	public static List<Department> deList = FileIO.ReadDE();
+	public static List<Employee> emList = FileIO.ReadEM();
+
 	public static void main(String[] args) {
-		List<Employee> domainList = FileIO.ReadEM();
-		List<Department> deList = FileIO.ReadDE();
-		List<Employee> emList = FileIO.ReadEM();
+
 		Department de = new Department();
 		Employee em = new Employee();
 		Scanner sc = new Scanner(System.in);
 		Department department = null;
 		Employee employee = null;
-		while (true) {
+		/*while (true) {
 			System.out.println("List menu");
 			System.out.println("1:	ADD new Department ");
 			System.out.println("2:	Search Department");
@@ -55,7 +58,12 @@ public class RunProgram {
 				FileIO.writeEM(emList);
 				return;
 			}
-		}
+		}*/
+
+		de.createDepartment(sc);
+		EmployeeAction employeeAction = new EmployeeAction();
+		List<Employee> findByDEID = employeeAction.findEmployeeByDepartmentID("DM11111");
+		System.out.println(findByDEID);
 
 	}
 

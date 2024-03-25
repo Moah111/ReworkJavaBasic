@@ -53,10 +53,11 @@ public class Department {
 	public Department createDepartment(Scanner sc) {
 		System.out.print("ADD new departmentID, Start With DE first, follow by 5 digits :  ");
 		String deID = sc.nextLine();
-		while (Check.isInCorrectFormat(deID, "DE")) {
+		while (Check.isCorrectFormat(deID, "DE")) {
 			System.out.print("Department ID is not correct, try again :  ");
 			deID = sc.nextLine();
 		}
+
 		System.out.print("Department name : ");
 		String name = sc.nextLine();
 		System.out.print(" What Is Domain : ");

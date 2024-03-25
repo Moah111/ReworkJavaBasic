@@ -65,7 +65,7 @@ public class Employee {
 	}
 
 	public String getDeID() {
-		return department.getdeId();
+		return this.deID;
 	}
 
 	public void setDeID(String deID) {
@@ -95,7 +95,7 @@ public class Employee {
 	public Employee addNewEmp(Scanner sc) {
 		System.out.print("Employee ID(Enter EM first) : ");
 		String emID = sc.nextLine();
-		while (Check.isInCorrectFormat(emID, "EM")) {
+		while (Check.isCorrectFormat(emID, "EM")) {
 			System.out.print("Employee ID is not correct, try again :  ");
 			deID = sc.nextLine();
 		}
